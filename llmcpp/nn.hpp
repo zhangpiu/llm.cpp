@@ -44,12 +44,26 @@ void UniformFill(absl::Span<float> weight, float from = 0.0, float to = 1.0) {
 }
 
 void NormalFill(absl::Span<float> weight, float mean = 0.0, float std = 1.0) {
+#ifdef EIGEN_USE_GPU
+  std::vector<float> w(weight.size());
+  normal_(w.data(), w.size(), mean, std, &g_mt19937_state);
+  g_device.memcpyHostToDevice(weight.data(), w.data(),
+                              sizeof(float) * w.size());
+#else
   normal_(weight.data(), weight.size(), mean, std, &g_mt19937_state);
+#endif
 }
 
 void KaimingUniformFill(absl::Span<float> weight, int in_features) {
   const float bound = std::sqrt(1.0f / in_features);
+#ifdef EIGEN_USE_GPU
+  std::vector<float> w(weight.size());
+  uniform_(w.data(), w.size(), -bound, bound, &g_mt19937_state);
+  g_device.memcpyHostToDevice(weight.data(), w.data(),
+                              sizeof(float) * w.size());
+#else
   uniform_(weight.data(), weight.size(), -bound, bound, &g_mt19937_state);
+#endif
 }
 
 std::pair<int, int> SplitRange(int total, int idx, int n) {
