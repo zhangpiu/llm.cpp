@@ -68,8 +68,8 @@ int main(int argc, char** argv) {
   int T = 64;  // sequence length 64 (i.e. each sequence is 64 tokens long).
                // must be <= maxT, which is 1024 for GPT-2
   DataLoader train_loader, val_loader;
-  dataloader_init(&train_loader, train_tokens, B, T, 0, 1);
-  dataloader_init(&val_loader, val_tokens, B, T, 0, 1);
+  dataloader_init(&train_loader, train_tokens, B, T, 0, 1, 0);
+  dataloader_init(&val_loader, val_tokens, B, T, 0, 1, 0);
   printf("train dataset num_batches: %zu\n", train_loader.num_tokens / (B * T));
   printf("val dataset num_batches: %zu\n", val_loader.num_tokens / (B * T));
   int val_num_batches = 5;
