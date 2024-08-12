@@ -1,5 +1,4 @@
-#include "gpt.hpp"
-#include "optim.hpp"
+#include "nn.hpp"
 
 using Tensor1D = Eigen::Tensor<float, 1, Eigen::RowMajor>;
 using Tensor2D = Eigen::Tensor<float, 2, Eigen::RowMajor>;
@@ -35,7 +34,7 @@ int main(int argc, char** argv) {
 
   auto start = std::chrono::steady_clock::now();
   for (int i = 0; i < 10; ++i) {
-    nn::MatMul<float>::Forward(xm, lm_headm, ym);
+    nn::MatMul::Forward(xm, lm_headm, ym);
   }
   auto end = std::chrono::steady_clock::now();
   std::cout << "avg: "

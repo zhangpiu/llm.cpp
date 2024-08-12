@@ -7,7 +7,6 @@
 #include "llmc/dataloader.h"
 #include "llmc/tokenizer.h"
 #include "optim.hpp"
-#include "pch.hpp"
 
 // sampler
 

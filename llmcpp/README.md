@@ -15,7 +15,7 @@ mkdir build && cd build
 cmake ..
 make train_gpt2_cpu
 cd ../
-./build/train_gpt2_cpu
+./build/llmcpp/train_gpt2_cpu
 ```
 
 The above lines 
@@ -68,7 +68,7 @@ mkdir build && cd build
 cmake ..
 make train_gpt2_gpu
 cd ../
-./build/train_gpt2_gpu
+./build/llmcpp/train_gpt2_gpu
 ```
 
 
@@ -98,7 +98,7 @@ mkdir build && cd build
 cmake ..
 make test_gpt2_cpu
 cd ../
-./build/test_gpt2_cpu
+./build/llmcpp/test_gpt2_cpu
 ```
 
 This now loads the `gpt2_124M_debug_state.bin` file that gets written by train_gpt2.py, runs a forward pass, compares the logits and loss with the PyTorch reference implementation, then it does 10 iterations of training with Adam and makes sure the losses match PyTorch.
