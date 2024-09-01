@@ -1,9 +1,15 @@
 # llm.cpp
 项目 fork 自 karpathy 的 [llm.c](https://github.com/karpathy/llm.c)，使用 C++(with Eigen) 来复现 GPT-2，支持 CPU/CUDA 计算。
+- 所有的计算部分都通过 Eigen Tensor 完成，所以同样一份代码通过简单地切换 Device 就可完成 CPU/CUDA 的计算
+- 这里实现的 GPT-2 与 PyTorch 版本是完全对齐的
+- 值得注意的是，CPU 版本比 PyTorch 快大约 20%，但是 CPU 版本比 PyTorch GPU 慢得多，主要原因是 Eigen 的 Tensor 不支持 BatchMatmul 
 
 
 This repo is forked from karpathy's [llm.c](https://github.com/karpathy/llm.c), using C++ (with Eigen) to reproduce GPT-2.
 
+- All calculations are done through the Eigen Tensor Module, so the same code can be used for CPU/CUDA calculations by simply switching the Device.
+- Currently, this repo has reproduced GPT-2 and the results are completely aligned with the PyTorch version.
+- It is worth noting that CPU calculations are about 20% faster than PyTorch, while GPU calculations are still far behind PyTorch's GPU due to the difficulty of Eigen Tensor Module to support BatchMatmul.
 
 ## quick start (CPU)
 
